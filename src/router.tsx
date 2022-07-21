@@ -1,19 +1,12 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Home from "./pages/Home/index";
-import Login from "./pages/Login/index";
-import Settings from "./pages/Settings/index";
+import { Routes, Route } from "react-router-dom";
+import { RoutePath } from "types/routes";
+import Home from "pages/Home/index";
 
 const Router = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path={RoutePath.HOME} element={<Home />} />
+    </Routes>
   );
 };
 
