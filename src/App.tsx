@@ -1,11 +1,10 @@
-// import {ReactComponent as Add} from 'assets/icons/add.svg'
-import Router from './router';
-import './App.css';
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import theme from "assets/styles/theme";
+import "./App.css";
 
 function App() {
-  return (
-   <Router />
-  );
+  return <ThemeProvider theme={theme}></ThemeProvider>;
 }
 
 export default App;
