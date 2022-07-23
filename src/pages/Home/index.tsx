@@ -1,5 +1,5 @@
 import * as S from "./style";
-import { ReactComponent as Search } from "../../assets/icons/search.svg";
+import { ReactComponent as Search } from "assets/icons/search.svg";
 
 const Home = () => {
   return (
