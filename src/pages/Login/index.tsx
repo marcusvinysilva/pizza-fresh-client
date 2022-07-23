@@ -1,9 +1,12 @@
+import BoxLogin from "components/BoxLogin";
 import * as S from "./style";
 
 const Login = () => {
   return (
     <S.Login>
-      <S.LoginContent></S.LoginContent>
+      <S.LoginContent>
+        <BoxLogin />
+      </S.LoginContent>
     </S.Login>
   );
 };
