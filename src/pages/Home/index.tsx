@@ -8,7 +8,7 @@ import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
-import CheckoutSection from "components/Checkout Section";
+import CheckoutSection from "components/CheckoutSection";
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
