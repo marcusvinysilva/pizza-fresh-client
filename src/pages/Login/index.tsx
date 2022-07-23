@@ -1,7 +1,11 @@
-// import {ReactComponent as Add} from 'assets/icons/add.svg'
+import * as S from "./style";
 
 const Login = () => {
-  return <div className="Login">Login</div>;
+  return (
+    <S.Login>
+      <S.LoginContent></S.LoginContent>
+    </S.Login>
+  );
 };
 
 export default Login;
