@@ -45,13 +45,6 @@ export const products: ProductResponse[] = [
   },
   {
     id: "507f191e810c19729de860ea",
-    name: "Napolitana",
-    description: "Mussarela, Manjericão e Molho de Tomate",
-    image: "https://i.imgur.com/431Ki5d.jpg",
-    price: 40.59,
-  },
-  {
-    id: "507f191e810c19729de860ea",
     name: "Mussarela",
     description: "Mussarela e Orégano",
     image: "https://i.imgur.com/S8zz0Oh.png",
