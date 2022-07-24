@@ -11,6 +11,7 @@ import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
 import { products } from "mocks/products";
+import { orders } from "mocks/orders";
 import { ProductResponse } from "types/Product";
 
 const Home = () => {
@@ -64,7 +65,7 @@ const Home = () => {
         </div>
       </S.HomeContent>
       <aside>
-        <OrderDetails />
+        <OrderDetails orders={orders} />
       </aside>
       {/* <Overlay>
                 <CheckoutSection />
