@@ -1,4 +1,5 @@
 import { ReactComponent as Add } from "assets/icons/add.svg";
+import EditUser from "components/EditUser";
 import { HTMLAttributes } from "react";
 import * as S from "./style";
 
@@ -25,7 +26,7 @@ const ManageUsers = ({ ...props }: ManageUsersProps) => {
           <S.EditForm type="password" placeholder="Confirmar Senha" />
           <S.EditForm type="url" placeholder="Imagem" />
         </S.ManageUsersContentAdd>
-        {"Componente EditUser"}
+        <EditUser />
       </S.ManageUsersContent>
       <S.ManageUsersActions>
         <S.ManageUsersActionsCancel>Cancelar</S.ManageUsersActionsCancel>
