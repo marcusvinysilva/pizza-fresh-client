@@ -4,6 +4,7 @@ import Home from "pages/Home/index";
 import Login from "pages/Login";
 import Settings from "pages/Settings";
 import ManageProducts from "components/ManageProducts";
+import ManageUsers from "components/ManageUsers";
 
 const Router = () => {
   return (
@@ -12,6 +13,7 @@ const Router = () => {
       <Route path={RoutePath.HOME} element={<Home />} />
       <Route path={RoutePath.SETTINGS} element={<Settings />} />
       <Route path={RoutePath.SETTINGS_PRODUCTS} element={<ManageProducts />} />
+      <Route path={RoutePath.SETTINGS_USERS} element={<ManageUsers />} />
     </Routes>
   );
 };
