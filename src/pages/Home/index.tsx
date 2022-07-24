@@ -10,6 +10,8 @@ import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
+import { products } from "mocks/products";
+import { ProductResponse } from "types/Product";
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
@@ -18,6 +20,7 @@ const Home = () => {
   });
   const navigate = useNavigate();
   const handleNavigation = (path: RoutePath) => navigate(path);
+  const handleSelection = (product: ProductResponse) => {};
 
   return (
     <S.Home>
@@ -48,7 +51,14 @@ const Home = () => {
           </S.HomeProductTitle>
           <S.HomeProductList>
             <ProductItemList>
-              <ProductItem />
+              {Boolean(products.length) &&
+                products.map((product, index) => (
+                  <ProductItem
+                    product={product}
+                    key={`ProductItem-${index}`}
+                    onSelect={handleSelection}
+                  />
+                ))}
             </ProductItemList>
           </S.HomeProductList>
         </div>
