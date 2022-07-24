@@ -9,12 +9,14 @@ export type OrderItemProps = {
   product: ProductResponse;
   quantity: number;
   observation?: string;
+  onRemoveItem?: () => void;
 } & DivType;
 
 const OrderItem = ({
   product,
   quantity,
   observation = "",
+  onRemoveItem,
   ...props
 }: OrderItemProps) => {
   const [quantityState, setQuantityState] = useState(quantity);
@@ -74,7 +76,7 @@ const OrderItem = ({
         <S.OrderItemRightTotalPrice>
           R$ {Number(product.price * quantityState).toFixed(2)}
         </S.OrderItemRightTotalPrice>
-        <S.OrderItemRightTrash>
+        <S.OrderItemRightTrash onClick={onRemoveItem}>
           <Trash />
         </S.OrderItemRightTrash>
       </S.OrderItemRight>
