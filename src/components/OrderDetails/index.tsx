@@ -11,6 +11,7 @@ type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
 
 type OrderDetailsProps = {
   orders: OrderItemType[];
+  selectedTable?: number | string;
   onProceedToPayment: () => void;
   onOrdersChange: (orders: OrderItemType[]) => void;
   onChangeActiveOrderType: (data: OrderType) => void;
@@ -25,12 +26,18 @@ const OrderDetails = ({
   onChangeActiveOrderType,
   onRemoveItem,
   activeOrderType,
+  selectedTable,
 }: OrderDetailsProps) => {
   const price = orders
     .map((i) => i.product.price * i.quantity)
     .reduce((a, b) => a + b, 0);
 
   const [priceState, setPriceState] = useState(price);
+
+  const disabledButton =
+    !Boolean(orders.length) ||
+    !Boolean(selectedTable) ||
+    selectedTable === "default";
 
   const handleChange = (data: OrderItemType) => {
     const list = orders.map((item) =>
@@ -95,7 +102,16 @@ const OrderDetails = ({
                 <span>Subtotal</span>
                 <span>R$ {priceState.toFixed(2)}</span>
               </S.OrderDetailsListFooterRow>
-              <ButtonLarge onClick={onProceedToPayment} value="Continue para o pagamento" />
+              {(!Boolean(selectedTable) || selectedTable === "default") && (
+                <S.OrderDetailsListFooterWarning>
+                  Escolha a mesa primeiro
+                </S.OrderDetailsListFooterWarning>
+              )}
+              <ButtonLarge
+                onClick={onProceedToPayment}
+                disabled={disabledButton}
+                value="Continue para o pagamento"
+              />
             </S.OrderDetailsListFooter>
           }
         />
