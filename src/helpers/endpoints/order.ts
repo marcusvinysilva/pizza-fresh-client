@@ -1,5 +1,5 @@
-import { endpoint } from 'helpers/endpoints';
+import { endpoint } from "helpers/endpoints";
 
 export const order = {
-    createOrder: () => `${endpoint.baseUrl}/order`,
+  createOrder: () => `${endpoint.baseUrl}/order`,
 };
