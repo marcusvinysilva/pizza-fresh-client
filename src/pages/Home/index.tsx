@@ -41,8 +41,6 @@ const Home = () => {
 
   const { data: tablesData } = useQuery(QueryKey.TABLES, TableService.getLista);
 
-  const tables = tablesData || [];
-
   const [activeOrderType, setActiverOrderType] = useState(
     OrderType.COMER_NO_LOCAL
   );
@@ -72,10 +70,6 @@ const Home = () => {
   const handleFilter = (title: string) => {
     const list = products.filter(({ name }) => matchByText(name, title));
     setFilteredProducts(list);
-  };
-
-  const handleOrderChange = () => {
-    console.log("change");
   };
 
   useEffect(() => {
@@ -138,7 +132,7 @@ const Home = () => {
           </S.HomeProductList>
         </div>
       </S.HomeContent>
-      
+
       <aside>
         <OrderDetails
           orders={orders}
