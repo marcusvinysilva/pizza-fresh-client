@@ -55,7 +55,7 @@ const Home = () => {
   };
 
   const handleRemoveOrderItem = (id: string) => {
-    const filtered = orders.filter((i) => i.product.id != id);
+    const filtered = orders.filter((i) => i.product.id !== id);
     setOrders(filtered);
   };
 
