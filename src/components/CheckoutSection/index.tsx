@@ -180,7 +180,7 @@ const CheckoutSection = ({
             <S.PaymentActionsButtonGroupCancel>
               Cancelar
             </S.PaymentActionsButtonGroupCancel>
-            <S.PaymentActionsButtonGroupConfirm>
+            <S.PaymentActionsButtonGroupConfirm onClick={handlePaymentConfirm}>
               Confirmar Pagamento
             </S.PaymentActionsButtonGroupConfirm>
           </S.PaymentActionsButtonGroup>
