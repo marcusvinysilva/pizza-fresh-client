@@ -17,6 +17,8 @@ import { OrderItemType } from "types/OrderItemType";
 import { useQuery } from "react-query";
 import { QueryKey } from "types/QueryKey";
 import { ProductService } from "services/ProductService";
+import { TableService } from "services/TableService";
+import { matchByText } from "helpers/Utils";
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
@@ -31,7 +33,15 @@ const Home = () => {
     ProductService.getLista
   );
 
+  const [filteredProducts, setFilteredProducts] = useState<ProductResponse[]>(
+    []
+  );
+
   const [products, setProducts] = useState<ProductResponse[]>([]);
+
+  const { data: tablesData } = useQuery(QueryKey.TABLES, TableService.getLista);
+
+  const tables = tablesData || [];
 
   const [activeOrderType, setActiverOrderType] = useState(
     OrderType.COMER_NO_LOCAL
@@ -59,8 +69,18 @@ const Home = () => {
     setOrders(filtered);
   };
 
+  const handleFilter = (title: string) => {
+    const list = products.filter(({ name }) => matchByText(name, title));
+    setFilteredProducts(list);
+  };
+
+  const handleOrderChange = () => {
+    console.log("change");
+  };
+
   useEffect(() => {
     setProducts(productsData || []);
+    setFilteredProducts(productsData || []);
   }, [productsData]);
 
   return (
@@ -80,30 +100,45 @@ const Home = () => {
                 {dateDescription}
               </S.HomeHeaderDetailsDate>
             </div>
+
             <S.HomeHeaderDetailsSearch>
               <Search />
-              <input type="text" placeholder="Procure pelo sabor" />
+              <input
+                type="text"
+                placeholder="Procure pelo sabor"
+                onChange={({ target }) => handleFilter(target.value)}
+              />
             </S.HomeHeaderDetailsSearch>
           </S.HomeHeaderDetails>
         </header>
+
         <div>
           <S.HomeProductTitle>
             <b>Pizzas</b>
           </S.HomeProductTitle>
+
           <S.HomeProductList>
             <ProductItemList onSelectTable={setSelectedTable}>
               {Boolean(products.length) &&
-                products.map((product, index) => (
+                filteredProducts.map((product, index) => (
                   <ProductItem
                     product={product}
                     key={`ProductItem-${index}`}
                     onSelect={handleSelection}
                   />
                 ))}
+
+              {Boolean(products.length) &&
+                Array(3 - (products.length % 3))
+                  .fill("")
+                  .map((_, key) => (
+                    <S.HomeProductListGap key={`Phantom-${key}`} />
+                  ))}
             </ProductItemList>
           </S.HomeProductList>
         </div>
       </S.HomeContent>
+      
       <aside>
         <OrderDetails
           orders={orders}
