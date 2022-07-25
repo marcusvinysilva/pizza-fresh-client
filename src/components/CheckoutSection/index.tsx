@@ -9,6 +9,13 @@ import { OrderType } from "types/orderType";
 import { PaymentMethod } from "types/PaymentMethod";
 
 import * as S from "./style";
+import { useMutation } from "react-query";
+import { OrderService } from "services/OrderService";
+import { ErrorResponse } from "types/api/error";
+import { LocalStorageHelper } from "helpers/LocalStorageHelper";
+import { LocalStorageKeys } from "types/LocalStorageKeys";
+import { UserResponse } from "types/api/user";
+import { Order } from "types/api/order";
 
 type CheckoutSectionType = HTMLAttributes<HTMLDivElement>;
 
@@ -32,9 +39,34 @@ const CheckoutSection = ({
   const [activeMethod, setActiveMethod] = useState<PaymentMethod>();
   const [closing, setClosing] = useState<boolean>(false);
 
+  const closeOrder = useMutation(OrderService.create, {
+    onSuccess: (data: {} & ErrorResponse) => {
+      if (data.statusCode) {
+        return;
+      }
+
+      console.log(data);
+    },
+    onError: () => {
+      console.error("Erro ao fechar o pedido");
+    },
+  });
+
   const handleCloseSection = () => {
     setClosing(true);
     setTimeout(onCloseSection, 800);
+  };
+
+  const handlePaymentConfirm = () => {
+    const userId =
+      LocalStorageHelper.get<UserResponse>(LocalStorageKeys.USER)?.id || "";
+    const orderRequest: Order = {
+      userId,
+      tableNumber: Number(selectedTable),
+      products: orders,
+    };
+
+    closeOrder.mutate(orderRequest);
   };
 
   return (
@@ -52,6 +84,7 @@ const CheckoutSection = ({
           <S.CheckoutSectionPaymentFormTitle>
             Método de Pagamento
           </S.CheckoutSectionPaymentFormTitle>
+
           <S.PaymentForm>
             <S.PaymentFormCheckbox>
               <CheckboxIcon
@@ -67,6 +100,7 @@ const CheckoutSection = ({
                 icon={<Cash />}
               />
             </S.PaymentFormCheckbox>
+
             {activeMethod === PaymentMethod.CARD && (
               <>
                 <S.PaymentFormGroup>
@@ -75,7 +109,7 @@ const CheckoutSection = ({
                     type="text"
                     name="titular"
                     id="titular"
-                    placeholder="Wheslley Rimar"
+                    placeholder="Marcus Silva"
                   />
                 </S.PaymentFormGroup>
 
