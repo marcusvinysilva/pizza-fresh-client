@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Pizza Fresh (Client)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![GitHub repo size](https://img.shields.io/github/repo-size/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
 
-## Available Scripts
+![Tela Inicial do Pizza Fresh](https://i.imgur.com/zONwXQA.png)
 
-In the project directory, you can run:
+> O Pizza Fresh é um sistema de gerenciamento de uma pizzaria.
+## 🚀 Instalando o Pizza Fresh
 
-### `yarn start`
+Para instalar o Pizza Fresh, siga estas etapas:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Clone esse projeto em seu computador com o comando:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+	git clone https://github.com/marcusvinysilva/pizza-fresh-client.git
+```
 
-### `yarn test`
+Acesse a pasta do projeto seu terminal:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+	cd pizza-fresh-client
+```
 
-### `yarn build`
+Já pasta da aplicação em seu terminal, digite o seguinte comando:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+	yarn install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ☕ Utilizando  o Pizza Fresh
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para utilizar o Pizza Fresh, execute o comando:
 
-### `yarn eject`
+```bash
+	yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🤝 Colaboradores
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Marcus Silva** - [Github](https://github.com/marcusvinysilva) | [Linkedin](https://www.linkedin.com/in/marcusvinysilva/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📝 Licença
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
 
-## Learn More
+[⬆ Voltar ao topo](#pizza-fresh-(client))
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
