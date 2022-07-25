@@ -13,7 +13,7 @@ type ManageUsersType = HTMLAttributes<HTMLDivElement>;
 type ManageUsersProps = {} & ManageUsersType;
 
 const ManageUsers: React.FC<ManageUsersProps> = ({ ...props }) => {
-  const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<UserResponse[]>([]);
   const { data: usersData } = useQuery(QueryKey.USERS, UserService.getLista);
 
   const add = useMutation(UserService.create, {
@@ -40,7 +40,7 @@ const ManageUsers: React.FC<ManageUsersProps> = ({ ...props }) => {
       setUsers(editedUsers);
     },
     onError: () => {
-      console.error("Erro ao remover a mesa");
+      console.error("Erro ao remover o usuário");
     },
   });
 
