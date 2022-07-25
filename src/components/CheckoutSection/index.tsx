@@ -4,9 +4,10 @@ import OrderConfirmation from "components/OrderConfirmation";
 
 import { ReactComponent as Card } from "assets/icons/credit-card.svg";
 import { ReactComponent as Cash } from "assets/icons/wallet.svg";
+import { OrderItemType } from "types/OrderItemType";
+import { OrderType } from "types/orderType";
 
 import * as S from "./style";
-import { OrderItemType } from "types/OrderItemType";
 
 type CheckoutSectionType = HTMLAttributes<HTMLDivElement>;
 
@@ -14,6 +15,8 @@ type CheckoutSectionProps = {
   orders: OrderItemType[];
   selectedTable?: number;
   onOrdersChange: (orders: OrderItemType[]) => void;
+  onChangeActiveOrderType: (data: OrderType) => void;
+  activeOrderType: OrderType;
   onCloseSection: () => void;
 } & CheckoutSectionType;
 
@@ -21,6 +24,8 @@ const CheckoutSection = ({
   orders,
   selectedTable,
   onOrdersChange,
+  onChangeActiveOrderType,
+  activeOrderType,
   onCloseSection,
 }: CheckoutSectionProps) => {
   const [closing, setClosing] = useState<boolean>(false);
@@ -93,8 +98,21 @@ const CheckoutSection = ({
           <S.PaymentActionsDetails>
             <S.PaymentActionsDetailsOrderType>
               <label htmlFor="card">Tipo de pedido</label>
-              <select>
-                <option>{""}</option>
+              <select
+                onChange={({ target }) =>
+                  onChangeActiveOrderType(target.value as OrderType)
+                }
+                name="order-type"
+                id="order-type"
+                value={Object.values(OrderType)
+                  .filter((option) => option === activeOrderType)
+                  .pop()}
+              >
+                {Object.values(OrderType).map((value, idx) => (
+                  <option key={`OrderType-${idx}`} value={value}>
+                    {value}
+                  </option>
+                ))}
               </select>
             </S.PaymentActionsDetailsOrderType>
             <S.PaymentActionsDetailsTableNumber>
