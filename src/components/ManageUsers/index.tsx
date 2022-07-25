@@ -56,7 +56,7 @@ const ManageUsers: React.FC<ManageUsersProps> = ({ ...props }) => {
       setUsers(editedUsers);
     },
     onError: () => {
-      console.error("Erro ao atualizar a mesa");
+      console.error("Erro ao atualizar o usuário");
     },
   });
 
