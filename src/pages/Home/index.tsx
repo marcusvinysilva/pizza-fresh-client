@@ -41,6 +41,8 @@ const Home = () => {
 
   const { data: tablesData } = useQuery(QueryKey.TABLES, TableService.getLista);
 
+  const tables = tablesData || [];
+
   const [activeOrderType, setActiverOrderType] = useState(
     OrderType.COMER_NO_LOCAL
   );
@@ -112,7 +114,7 @@ const Home = () => {
           </S.HomeProductTitle>
 
           <S.HomeProductList>
-            <ProductItemList onSelectTable={setSelectedTable}>
+            <ProductItemList tables={tables} onSelectTable={setSelectedTable}>
               {Boolean(products.length) &&
                 filteredProducts.map((product, index) => (
                   <ProductItem
