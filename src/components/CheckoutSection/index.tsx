@@ -45,7 +45,7 @@ const CheckoutSection = ({
         return;
       }
 
-      console.log(data);
+      onOrdersChange([]);
     },
     onError: () => {
       console.error("Erro ao fechar o pedido");
