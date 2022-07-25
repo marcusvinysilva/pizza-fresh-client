@@ -97,8 +97,8 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
     productsToEdit = [];
   };
 
-  const handleDelete = (user: ProductResponse) => {
-    remove.mutate(user.id);
+  const handleDelete = (productToDelete: ProductResponse) => {
+    remove.mutate(productToDelete.id);
     handleCancel();
   };
 
