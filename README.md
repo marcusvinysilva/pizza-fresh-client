@@ -39,6 +39,11 @@ Para utilizar o Pizza Fresh, execute o comando:
 	yarn start
 ```
 
+## 💻 Links
+
+- [Pizza Fresh (Netlify)](https://pizzafreshclient.netlify.app)
+- [Documentação do Pizza Fresh (Swagger)](https://pizzafreshserver.herokuapp.com/api)
+
 ## 🤝 Colaboradores
 
 - **Marcus Silva** - [Github](https://github.com/marcusvinysilva) | [Linkedin](https://www.linkedin.com/in/marcusvinysilva/)
