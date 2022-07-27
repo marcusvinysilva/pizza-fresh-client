@@ -9,7 +9,7 @@ import { OrderType } from "types/orderType";
 import { PaymentMethod } from "types/PaymentMethod";
 
 import * as S from "./style";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { OrderService } from "services/OrderService";
 import { ErrorResponse } from "types/api/error";
 import { LocalStorageHelper } from "helpers/LocalStorageHelper";

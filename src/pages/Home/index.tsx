@@ -14,7 +14,7 @@ import { ProductResponse } from "types/Product";
 import { OrderType } from "types/orderType";
 import { useEffect, useState } from "react";
 import { OrderItemType } from "types/OrderItemType";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { QueryKey } from "types/QueryKey";
 import { ProductService } from "services/ProductService";
 import { TableService } from "services/TableService";
@@ -29,7 +29,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const { data: productsData } = useQuery(
-    QueryKey.PRODUCTS,
+    [QueryKey.PRODUCTS],
     ProductService.getLista
   );
 
@@ -39,7 +39,7 @@ const Home = () => {
 
   const [products, setProducts] = useState<ProductResponse[]>([]);
 
-  const { data: tablesData } = useQuery(QueryKey.TABLES, TableService.getLista);
+  const { data: tablesData } = useQuery([QueryKey.TABLES], TableService.getLista);
 
   const tables = tablesData || [];
 

@@ -1,5 +1,5 @@
 import { HTMLAttributes, useEffect, useState } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { QueryKey } from "types/QueryKey";
 import { TableService } from "services/TableService";
 import { ReactComponent as Add } from "assets/icons/add.svg";
@@ -71,7 +71,7 @@ const ManageTables: React.FC<ManageTablesProps> = ({ ...props }) => {
     setIsAdding(false);
   };
 
-  const { data: tablesData } = useQuery(QueryKey.TABLES, TableService.getLista);
+  const { data: tablesData } = useQuery([QueryKey.TABLES], TableService.getLista);
 
   const [cancel, setCancel] = useState(false);
   const [isAdding, setIsAdding] = useState(false);

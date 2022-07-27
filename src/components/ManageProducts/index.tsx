@@ -1,7 +1,7 @@
 import { ReactComponent as Add } from "assets/icons/add.svg";
 import EditProduct from "components/EditProduct";
 import { HTMLAttributes, useEffect, useState } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { ProductService } from "services/ProductService";
 import { ErrorResponse } from "types/api/error";
 import { Product } from "types/api/product";
@@ -16,7 +16,7 @@ type ManageProductsProps = {} & ManageProductsType;
 const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
   const [products, setProducts] = useState<ProductResponse[]>([]);
   const { data: productsData } = useQuery(
-    QueryKey.PRODUCTS,
+    [QueryKey.PRODUCTS],
     ProductService.getLista
   );
 

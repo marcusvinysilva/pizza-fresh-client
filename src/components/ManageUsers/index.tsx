@@ -3,7 +3,7 @@ import { ReactComponent as Add } from "assets/icons/add.svg";
 import * as S from "./style";
 import EditUser from "components/EditUser";
 import { QueryKey } from "types/QueryKey";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { UserService } from "services/UserService";
 import { User, UserResponse, UserUpdate } from "types/api/user";
 import { ErrorResponse } from "types/api/error";
@@ -14,7 +14,7 @@ type ManageUsersProps = {} & ManageUsersType;
 
 const ManageUsers: React.FC<ManageUsersProps> = ({ ...props }) => {
   const [users, setUsers] = useState<UserResponse[]>([]);
-  const { data: usersData } = useQuery(QueryKey.USERS, UserService.getLista);
+  const { data: usersData } = useQuery([QueryKey.USERS], UserService.getLista);
 
   const add = useMutation(UserService.create, {
     onSuccess: (data: UserResponse & ErrorResponse) => {

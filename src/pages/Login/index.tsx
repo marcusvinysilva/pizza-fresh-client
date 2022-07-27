@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import BoxLogin from "components/BoxLogin";
 import { LocalStorageHelper } from "helpers/LocalStorageHelper";
 import { useState } from "react";
