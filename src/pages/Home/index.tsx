@@ -10,7 +10,7 @@ import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
-import { ProductResponse } from "types/Product";
+import { ProductResponse } from "types/api/product";
 import { OrderType } from "types/orderType";
 import { useEffect, useState } from "react";
 import { OrderItemType } from "types/OrderItemType";
