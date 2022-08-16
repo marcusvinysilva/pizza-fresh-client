@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { ReactComponent as Pencil } from "assets/icons/edit.svg";
+import { useEffect, useState } from "react";
 import { User, UserResponse, UserUpdate } from "types/api/user";
 import * as S from "./style";
 
@@ -10,12 +10,7 @@ interface EditUserProps {
   onEdit: (data: UserUpdate) => void;
 }
 
-const EditUser: React.FC<EditUserProps> = ({
-  user,
-  onEdit,
-  onCancel,
-  onDelete,
-}) => {
+const EditUser = ({ user, onCancel, onDelete, onEdit }: EditUserProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const form = {
@@ -64,9 +59,9 @@ const EditUser: React.FC<EditUserProps> = ({
                 alt={`Foto de ${user.name}`}
               />
             </S.EditUserDetailsImageWrap>
-            <S.EditUserDetailsTitle> {user.name} </S.EditUserDetailsTitle>
+            <S.EditUserDetailsTitle>{user.name}</S.EditUserDetailsTitle>
             <S.EditUserDetailsText>
-              <b>usuário:</b> {user.nickname}
+              <b>usuário: </b> {user.nickname}
             </S.EditUserDetailsText>
           </S.EditUserDetails>
 
@@ -105,7 +100,6 @@ const EditUser: React.FC<EditUserProps> = ({
             value={state.passConfirm}
             onChange={({ target }) => handleChange("passConfirm", target.value)}
           />
-
           <S.EditForm
             type="url"
             value={state.image}

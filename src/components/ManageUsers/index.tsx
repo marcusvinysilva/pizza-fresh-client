@@ -1,18 +1,18 @@
-import { HTMLAttributes, useEffect, useState } from "react";
 import { ReactComponent as Add } from "assets/icons/add.svg";
-import * as S from "./style";
 import EditUser from "components/EditUser";
-import { QueryKey } from "types/QueryKey";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { UserService } from "services/UserService";
-import { User, UserResponse, UserUpdate } from "types/api/user";
 import { ErrorResponse } from "types/api/error";
+import { User, UserResponse, UserUpdate } from "types/api/user";
+import { QueryKey } from "types/QueryKey";
+import * as S from "./style";
 
 type ManageUsersType = HTMLAttributes<HTMLDivElement>;
 
 type ManageUsersProps = {} & ManageUsersType;
 
-const ManageUsers: React.FC<ManageUsersProps> = ({ ...props }) => {
+const ManageUsers = ({ ...props }: ManageUsersProps) => {
   const [users, setUsers] = useState<UserResponse[]>([]);
   const { data: usersData } = useQuery([QueryKey.USERS], UserService.getLista);
 
@@ -142,14 +142,13 @@ const ManageUsers: React.FC<ManageUsersProps> = ({ ...props }) => {
     <S.ManageUsers {...props}>
       <S.ManageUsersTitle>Gerenciar Usuários</S.ManageUsersTitle>
       <S.ManageUsersSub>
-        <b> Usuários </b>
+        <b>Usuários</b>
       </S.ManageUsersSub>
-
       <S.ManageUsersContent>
         {!isAdding ? (
           <S.ManageUsersContentAdd onClick={() => setIsAdding(true)}>
             <Add />
-            <span>Adicionar usuário</span>
+            <span>Adicionar Usuário</span>
           </S.ManageUsersContentAdd>
         ) : (
           <S.ManageUsersContentAdd>
@@ -193,17 +192,15 @@ const ManageUsers: React.FC<ManageUsersProps> = ({ ...props }) => {
                 handleAddChange("passConfirm", target.value)
               }
             />
-
             <S.EditForm
               type="url"
+              placeholder="Imagem"
               success={Boolean(userToAdd.image.length)}
               value={userToAdd.image}
-              placeholder="Imagem"
               onChange={({ target }) => handleAddChange("image", target.value)}
             />
           </S.ManageUsersContentAdd>
         )}
-
         {users.map((user, index) => (
           <EditUser
             user={user}
@@ -214,7 +211,6 @@ const ManageUsers: React.FC<ManageUsersProps> = ({ ...props }) => {
           />
         ))}
       </S.ManageUsersContent>
-
       <S.ManageUsersActions>
         <S.ManageUsersActionsCancel onClick={handleCancel}>
           Cancelar
