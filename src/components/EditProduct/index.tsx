@@ -5,17 +5,17 @@ import * as S from "./style";
 
 interface EditProductProps {
   product: ProductResponse;
-  onCancel: boolean;
-  onDelete: (data: ProductResponse) => void;
   onEdit: (data: ProductResponse) => void;
+  onDelete: (data: ProductResponse) => void;
+  onCancel: boolean;
 }
 
-const EditProduct: React.FC<EditProductProps> = ({
+const EditProduct = ({
   product,
   onEdit,
-  onCancel,
   onDelete,
-}) => {
+  onCancel,
+}: EditProductProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const form = {
@@ -52,7 +52,7 @@ const EditProduct: React.FC<EditProductProps> = ({
   }, [onCancel]);
 
   return (
-    <S.EditProduct>
+    <S.EditProduct role="listitem">
       {!isEditing ? (
         <>
           <S.EditProductImage
@@ -98,9 +98,9 @@ const EditProduct: React.FC<EditProductProps> = ({
           />
           <S.EditForm
             type="url"
+            placeholder="Imagem"
             success={Boolean(state.image.length)}
             value={state.image}
-            placeholder="Imagem"
             onChange={({ target }) => handleChange("image", target.value)}
           />
           <S.Delete onClick={() => onDelete(product)}>Deletar</S.Delete>

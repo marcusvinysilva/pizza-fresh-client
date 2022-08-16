@@ -1,11 +1,10 @@
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { ReactComponent as Add } from "assets/icons/add.svg";
 import EditProduct from "components/EditProduct";
 import { HTMLAttributes, useEffect, useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { ProductService } from "services/ProductService";
 import { ErrorResponse } from "types/api/error";
-import { Product } from "types/api/product";
-import { ProductResponse } from "types/Product";
+import { Product, ProductResponse } from "types/api/product";
 import { QueryKey } from "types/QueryKey";
 import * as S from "./style";
 
@@ -13,7 +12,7 @@ type ManageProductsType = HTMLAttributes<HTMLDivElement>;
 
 type ManageProductsProps = {} & ManageProductsType;
 
-const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
+const ManageProducts = ({ ...props }: ManageProductsProps) => {
   const [products, setProducts] = useState<ProductResponse[]>([]);
   const { data: productsData } = useQuery(
     [QueryKey.PRODUCTS],
@@ -34,6 +33,22 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
     },
   });
 
+  const update = useMutation(ProductService.updateById, {
+    onSuccess: (data: ProductResponse & ErrorResponse) => {
+      if (data.statusCode) {
+        return;
+      }
+
+      const editedProducts = products.map((i) =>
+        data.id === i.id ? (data as ProductResponse) : i
+      );
+      setProducts(editedProducts);
+    },
+    onError: () => {
+      console.error("Erro ao atualizar o produto");
+    },
+  });
+
   const remove = useMutation(ProductService.deleteById, {
     onSuccess: (data: ProductResponse & ErrorResponse) => {
       if (data.statusCode) {
@@ -48,38 +63,7 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
     },
   });
 
-  const update = useMutation(ProductService.updateById, {
-    onSuccess: (data: ProductResponse & ErrorResponse) => {
-      if (data.statusCode) {
-        return;
-      }
-
-      const editedUsers = products.map((i) =>
-        data.id === i.id ? (data as ProductResponse) : i
-      );
-      setProducts(editedUsers);
-    },
-    onError: () => {
-      console.error("Erro ao atualizar o produto");
-    },
-  });
-
-  const [cancel, setCancel] = useState(false);
-
   let productsToEdit: ProductResponse[] = [];
-
-  const form = {
-    name: "",
-    price: Number(""),
-    image: "",
-    description: "",
-  };
-
-  const [productToAdd, setProductToAdd] = useState(form);
-
-  const handleAddChange = (name: string, value: string | number) => {
-    setProductToAdd({ ...productToAdd, [name]: value });
-  };
 
   const onEditProduct = (toEdit: ProductResponse) => {
     setCancel(false);
@@ -90,16 +74,18 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
       : [...productsToEdit, toEdit];
   };
 
-  const handleCancel = () => {
-    setCancel(true);
-    setIsAdding(false);
-    setTimeout(() => setCancel(false));
-    productsToEdit = [];
+  const form = {
+    name: "",
+    price: Number(""),
+    image: "",
+    description: "",
   };
 
-  const handleDelete = (productToDelete: ProductResponse) => {
-    remove.mutate(productToDelete.id);
-    handleCancel();
+  const [isAdding, setIsAdding] = useState(false);
+  const [productToAdd, setProductToAdd] = useState(form);
+
+  const handleAddChange = (name: string, value: string | number) => {
+    setProductToAdd({ ...productToAdd, [name]: value });
   };
 
   const productIsValid = () =>
@@ -117,6 +103,15 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
     image: toFormat.image,
   });
 
+  const [cancel, setCancel] = useState(false);
+
+  const handleCancel = () => {
+    setCancel(true);
+    setIsAdding(false);
+    setTimeout(() => setCancel(false));
+    productsToEdit = [];
+  };
+
   const handleSave = () => {
     const canAdd = productIsValid();
     const productFormatted = productFormatter(productToAdd);
@@ -131,11 +126,14 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
     setIsAdding(false);
   };
 
+  const handleDelete = (productToDelete: ProductResponse) => {
+    remove.mutate(productToDelete.id);
+    handleCancel();
+  };
+
   useEffect(() => {
     setProducts(productsData || []);
   }, [productsData]);
-
-  const [isAdding, setIsAdding] = useState(false);
 
   return (
     <S.ManageProducts {...props}>
@@ -143,12 +141,11 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
       <S.ManageProductsSub>
         <b>Pizzas</b>
       </S.ManageProductsSub>
-
       <S.ManageProductsContent>
         {!isAdding ? (
           <S.ManageProductsContentAdd onClick={() => setIsAdding(!isAdding)}>
             <Add />
-            <span>Adicionar pizza</span>
+            <span>Adicionar Pizza</span>
           </S.ManageProductsContentAdd>
         ) : (
           <S.AddCard>
@@ -177,14 +174,13 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
             />
             <S.EditForm
               type="url"
+              placeholder="Imagem"
               success={Boolean(productToAdd.image.length)}
               value={productToAdd.image}
-              placeholder="Imagem"
               onChange={({ target }) => handleAddChange("image", target.value)}
             />
           </S.AddCard>
         )}
-
         {products.map((product, index) => (
           <EditProduct
             product={product}
@@ -195,7 +191,6 @@ const ManageProducts: React.FC<ManageProductsProps> = ({ ...props }) => {
           />
         ))}
       </S.ManageProductsContent>
-
       <S.ManageProductsActions>
         <S.ManageProductsActionsCancel onClick={handleCancel}>
           Cancelar
