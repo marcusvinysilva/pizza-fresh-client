@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
 import { ReactComponent as Pencil } from "assets/icons/edit.svg";
-import * as S from "./style";
+import { useEffect, useState } from "react";
 import { TableResponse } from "types/api/table";
+import * as S from "./style";
 
 interface EditTableProps {
   table: TableResponse;
@@ -9,13 +9,7 @@ interface EditTableProps {
   onDelete: (data: TableResponse) => void;
   onEdit: (data: TableResponse) => void;
 }
-
-const EditTable: React.FC<EditTableProps> = ({
-  table,
-  onCancel,
-  onEdit,
-  onDelete,
-}) => {
+const EditTable = ({ table, onCancel, onDelete, onEdit }: EditTableProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -37,23 +31,21 @@ const EditTable: React.FC<EditTableProps> = ({
       {!isEditing ? (
         <>
           <S.EditTableDetails>
-            <S.EditTableDetailsName> {table.number} </S.EditTableDetailsName>
+            <S.EditTableDetailsName>{table.number}</S.EditTableDetailsName>
           </S.EditTableDetails>
-
           <S.EditTableAction onClick={() => onEditClick()}>
             <Pencil /> Editar
           </S.EditTableAction>
         </>
       ) : (
         <>
-          <label htmlFor="tableId">Número da Mesa</label>
+          <label htmlFor="tableId">Número da mesa</label>
           <S.EditForm
-            id="talbeId"
+            id="tableId"
             type="number"
             placeholder="01"
             onChange={({ target }) => onEditChange(target.value)}
           />
-
           <S.Deletar onClick={() => onDelete(table)}>Deletar Mesa</S.Deletar>
         </>
       )}
