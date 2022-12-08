@@ -1,10 +1,10 @@
 # Pizza Fresh
 
-![GitHub repo size](https://img.shields.io/github/repo-size/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/marcusvinysilva/pizza-fresh-client?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/marcusvinysilva/pizza-fresh-server?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/marcusvinysilva/pizza-fresh-server?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/marcusvinysilva/pizza-fresh-server?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/marcusvinysilva/pizza-fresh-server?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/marcusvinysilva/pizza-fresh-server?style=for-the-badge)
 
 ![Tela Inicial do Pizza Fresh](https://i.imgur.com/zONwXQA.png)
 
@@ -16,19 +16,19 @@ Para instalar o Pizza Fresh, siga estas etapas:
 Clone esse projeto em seu computador com o comando:
 
 ```bash
-	git clone https://github.com/marcusvinysilva/pizza-fresh-client.git
+	git clone https://github.com/marcusvinysilva/pizza-fresh-server.git
 ```
 
 Acesse a pasta do projeto seu terminal:
 
 ```
-	cd pizza-fresh-client
+	cd pizza-fresh-server
 ```
 
 Já pasta da aplicação em seu terminal, digite o seguinte comando:
 
 ```
-	yarn install
+	npm install
 ```
 
 ## ☕ Utilizando  o Pizza Fresh
@@ -36,13 +36,15 @@ Já pasta da aplicação em seu terminal, digite o seguinte comando:
 Para utilizar o Pizza Fresh, execute o comando:
 
 ```bash
-	yarn start
+	npm start
 ```
 
 ## 💻 Links
 
 - [Pizza Fresh (Vercel)](https://pizza-fresh-client.vercel.app)
 - [Documentação do Pizza Fresh (Swagger)](https://pizza-fresh-server-h8ng.onrender.com/api)
+
+  Obs: Antes de acessar a aplicação na `Vercel`, crie um usuário através do endpoint `create user` pelo `Swagger`.
 
 ## 🤝 Colaboradores
 
